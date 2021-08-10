@@ -163,9 +163,6 @@
 		padding-left: 15px;
 	}
 
-	.site-logo img {
-		height: 22px;
-	}
 
 	/* Navigation */
 	.navbar-toggle {
@@ -447,6 +444,7 @@
 	.site-footer .row {
 		display:flex;
 		flex-direction: column-reverse;	
+		
 	}
 
 	.site-footer .text-right{

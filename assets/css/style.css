@@ -167,9 +167,17 @@ html, body {
     z-index: 5;
 }
 
-.site-logo img {
+.site-logo {
     padding-bottom: 2px;
 }
+
+.site-logo > a {
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    color:black;
+}
+
 
 /* Navigation */
 .navbar-nav > li > a {
