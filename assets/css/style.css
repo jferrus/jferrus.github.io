@@ -70,7 +70,6 @@ h4 {
     font-size: 16px;
     font-weight: 600;
     text-transform: uppercase;
-    border-radius: 0;
     transition: box-shadow 0.25s ease-in-out;
     -moz-transition: box-shadow 0.25s ease-in-out;
     -webkit-transition: box-shadow 0.25s ease-in-out;
