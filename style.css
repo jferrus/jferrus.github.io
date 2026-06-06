@@ -220,7 +220,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 80px;
+    padding-top: 160px;
     gap: 4rem;
 }
 
@@ -612,7 +612,7 @@ footer {
     .hero {
         flex-direction: column-reverse;
         text-align: center;
-        padding-top: 120px;
+        padding-top: 180px;
         gap: 2rem;
     }
 
