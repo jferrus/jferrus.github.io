@@ -15,17 +15,17 @@ function setLanguage(lang) {
     // Actualizar título y meta tags si lo deseas
     // (Opcional, pero recomendado para SEO)
     if (lang === 'en') {
-        document.title = "Jose Ferrús Aparicio | Mid Developer in Valencia";
-        document.querySelector('meta[name="description"]').setAttribute("content", "Professional portfolio of Jose Ferrús Aparicio, Mid Developer based in Valencia, Spain.");
+        document.title = "Jose Ferrús Aparicio | Software Engineer in Valencia";
+        document.querySelector('meta[name="description"]').setAttribute("content", "Professional portfolio of Jose Ferrús Aparicio, Software Engineer based in Valencia, Spain.");
     } else if (lang === 'ca') {
-        document.title = "Jose Ferrús Aparicio | Mid Developer a València";
-        document.querySelector('meta[name="description"]').setAttribute("content", "Portfoli professional de Jose Ferrús Aparicio, Mid Developer establert a València, Espanya.");
+        document.title = "Jose Ferrús Aparicio | Enginyer de Programari a València";
+        document.querySelector('meta[name="description"]').setAttribute("content", "Portfoli professional de Jose Ferrús Aparicio, Enginyer de Programari establert a València, Espanya.");
     } else if (lang === 'fr') {
-        document.title = "Jose Ferrús Aparicio | Mid Developer à Valence";
-        document.querySelector('meta[name="description"]').setAttribute("content", "Portfolio professionnel de Jose Ferrús Aparicio, Mid Developer basé à Valence, Espagne.");
+        document.title = "Jose Ferrús Aparicio | Ingénieur Logiciel à Valence";
+        document.querySelector('meta[name="description"]').setAttribute("content", "Portfolio professionnel de Jose Ferrús Aparicio, Ingénieur Logiciel basé à Valence, Espagne.");
     } else {
-        document.title = "Jose Ferrús Aparicio | Mid Developer en Valencia";
-        document.querySelector('meta[name="description"]').setAttribute("content", "Portfolio profesional de Jose Ferrús Aparicio, Mid Developer radicado en Valencia, España, con 4 años de experiencia en desarrollo backend y frontend.");
+        document.title = "Jose Ferrús Aparicio | Ingeniero de Software en Valencia";
+        document.querySelector('meta[name="description"]').setAttribute("content", "Portfolio profesional de Jose Ferrús Aparicio, Ingeniero de Software radicado en Valencia, España, con 4 años de experiencia en desarrollo backend y frontend.");
     }
 }
 
