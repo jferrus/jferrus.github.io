@@ -70,11 +70,25 @@
         <div class="nav-content">
             <a href="#" class="logo">JF.</a>
             <ul class="nav-links">
-                <li><a href="#about">Sobre mí</a></li>
-                <li><a href="#experience">Experiencia</a></li>
-                <li><a href="#education">Educación</a></li>
-                <li><a href="#skills">Habilidades</a></li>
+                <li><a href="#about" data-i18n="nav.about">Sobre mí</a></li>
+                <li><a href="#experience" data-i18n="nav.experience">Experiencia</a></li>
+                <li><a href="#education" data-i18n="nav.education">Educación</a></li>
+                <li><a href="#skills" data-i18n="nav.skills">Habilidades</a></li>
             </ul>
+            <div class="lang-selector">
+                <button onclick="setLanguage('es')" class="lang-btn" title="Castellano">🇪🇸</button>
+                <button onclick="setLanguage('ca')" class="lang-btn" title="Valencià">
+                    <svg viewBox="0 0 9 6" width="18" height="12" xmlns="http://www.w3.org/2000/svg" style="border-radius:2px; vertical-align: middle;">
+                        <rect width="9" height="6" fill="#da121a" />
+                        <rect y="1" width="9" height="1" fill="#f1bf00" />
+                        <rect y="3" width="9" height="1" fill="#f1bf00" />
+                        <rect y="5" width="9" height="1" fill="#f1bf00" />
+                        <rect width="2.5" height="6" fill="#0033a0" />
+                    </svg>
+                </button>
+                <button onclick="setLanguage('en')" class="lang-btn" title="English">🇬🇧</button>
+                <button onclick="setLanguage('fr')" class="lang-btn" title="Français">🇫🇷</button>
+            </div>
         </div>
     </nav>
 
@@ -82,15 +96,14 @@
         <!-- Hero Section -->
         <section id="hero" class="hero section-hidden">
             <div class="hero-content">
-                <p class="greeting">Hola, soy</p>
+                <p class="greeting" data-i18n="hero.greeting">Hola, soy</p>
                 <h1 class="name">Jose Ferrús Aparicio</h1>
-                <h2 class="title"><span class="typing-text">Mid Developer en Valencia</span><span class="cursor">&nbsp;</span></h2>
-                <p class="bio">
-                    Desarrollador de software afincado en <strong>Valencia, España</strong>. 
-                    4 años de experiencia en el sector tecnológico.
-                    <span class="highlight-green">2 años en consultoría</span> trabajando en equipo, y
-                    <span class="highlight-blue">2 años como ayudante de investigación</span> trabajando de forma
-                    autónoma.
+                <h2 class="title"><span class="typing-text" data-i18n="hero.title">Mid Developer en Valencia</span><span class="cursor">&nbsp;</span></h2>
+                <p class="bio" data-i18n="hero.bio">
+                    Desarrollador de software afincado en <strong>Valencia, España</strong>.<br>
+                    4 años de experiencia en el sector tecnológico.<br>
+                    <span class="highlight-green">2 años en consultoría</span> trabajando en equipo, y<br>
+                    <span class="highlight-blue">2 años como ayudante de investigación</span> trabajando de forma autónoma.
                 </p>
                 <div class="contact-info">
                     <a href="mailto:jferrus21@proton.me" class="btn btn-primary">
@@ -120,14 +133,14 @@
 
         <!-- Experience Section -->
         <section id="experience" class="section section-hidden">
-            <h2 class="section-title">Experiencia Profesional</h2>
+            <h2 class="section-title" data-i18n="section.experience">Experiencia Profesional</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot pink"></div>
                     <div class="timeline-content glass-card">
-                        <h3>Técnico Medio</h3>
-                        <p class="duration">2 años</p>
-                        <p class="description">Desarrollo integral de aplicaciones web, trabajando tanto en la parte
+                        <h3 data-i18n="exp1.title">Técnico Medio</h3>
+                        <p class="duration" data-i18n="exp1.duration">2 años</p>
+                        <p class="description" data-i18n="exp1.desc">Desarrollo integral de aplicaciones web, trabajando tanto en la parte
                             <strong>Backend</strong> como en el <strong>Frontend</strong>.
                         </p>
                     </div>
@@ -135,27 +148,27 @@
                 <div class="timeline-item">
                     <div class="timeline-dot blue"></div>
                     <div class="timeline-content glass-card">
-                        <h3>Desarrollador</h3>
-                        <p class="duration">2 años</p>
-                        <p class="description">Especialización en desarrollo <strong>Backend</strong>, construyendo
+                        <h3 data-i18n="exp2.title">Desarrollador</h3>
+                        <p class="duration" data-i18n="exp2.duration">2 años</p>
+                        <p class="description" data-i18n="exp2.desc">Especialización en desarrollo <strong>Backend</strong>, construyendo
                             lógica de negocio.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot green"></div>
                     <div class="timeline-content glass-card">
-                        <h3>Técnico de Soporte</h3>
-                        <p class="duration">3 meses</p>
-                        <p class="description">Resolución de incidencias de software y hardware. <br><span
+                        <h3 data-i18n="exp3.title">Técnico de Soporte</h3>
+                        <p class="duration" data-i18n="exp3.duration">3 meses</p>
+                        <p class="description" data-i18n="exp3.desc">Resolución de incidencias de software y hardware. <br><span
                                 class="badge">Nota: 9/10</span></p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot orange"></div>
                     <div class="timeline-content glass-card">
-                        <h3>Técnico de Soporte</h3>
-                        <p class="duration">1 mes</p>
-                        <p class="description">Resolución de incidencias informáticas en un Ayuntamiento local.</p>
+                        <h3 data-i18n="exp4.title">Técnico de Soporte</h3>
+                        <p class="duration" data-i18n="exp4.duration">1 mes</p>
+                        <p class="description" data-i18n="exp4.desc">Resolución de incidencias informáticas en un Ayuntamiento local.</p>
                     </div>
                 </div>
             </div>
@@ -163,7 +176,7 @@
 
         <!-- Education Section -->
         <section id="education" class="section section-hidden">
-            <h2 class="section-title">Educación</h2>
+            <h2 class="section-title" data-i18n="section.education">Educación</h2>
             <div class="grid-2">
                 <div class="glass-card edu-card">
                     <div class="edu-icon pink-text">
@@ -173,10 +186,10 @@
                             <path d="M6 12v5c3 3 9 3 12 0v-5" />
                         </svg>
                     </div>
-                    <h3>Máster en Ingeniería del Software</h3>
+                    <h3 data-i18n="edu1.title">Máster en Ingeniería del Software</h3>
                     <p class="institution">Universidad Nacional de Educación a Distancia (UNED)</p>
-                    <p class="date">2024 - Actualidad</p>
-                    <p class="description">Cursando actualmente con la intención de ampliar conocimientos y aplicarlos
+                    <p class="date" data-i18n="edu1.date">2024 - Actualidad</p>
+                    <p class="description" data-i18n="edu1.desc">Cursando actualmente con la intención de ampliar conocimientos y aplicarlos
                         en el entorno laboral.</p>
                 </div>
                 <div class="glass-card edu-card">
@@ -187,10 +200,10 @@
                             <path d="M6 12v5c3 3 9 3 12 0v-5" />
                         </svg>
                     </div>
-                    <h3>Grado en Ingeniería Informática</h3>
+                    <h3 data-i18n="edu2.title">Grado en Ingeniería Informática</h3>
                     <p class="institution">Universidad de Valencia</p>
-                    <p class="date">Finalizado en 2018</p>
-                    <p class="description">Formación base sólida en fundamentos de computación, algoritmia y desarrollo
+                    <p class="date" data-i18n="edu2.date">Finalizado en 2018</p>
+                    <p class="description" data-i18n="edu2.desc">Formación base sólida en fundamentos de computación, algoritmia y desarrollo
                         de software.</p>
                 </div>
             </div>
@@ -198,35 +211,35 @@
 
         <!-- Skills Section -->
         <section id="skills" class="section section-hidden">
-            <h2 class="section-title">Habilidades y Formación</h2>
+            <h2 class="section-title" data-i18n="section.skills">Habilidades y Formación</h2>
             <div class="grid-2">
 
                 <!-- Courses -->
                 <div class="glass-card">
-                    <h3 class="card-title">Cursos Destacados</h3>
+                    <h3 class="card-title" data-i18n="skills.courses">Cursos Destacados</h3>
                     <ul class="courses-list">
                         <li>
                             <span class="course-icon angular"></span>
-                            Curso de Angular
+                            <span data-i18n="course1">Curso de Angular</span>
                         </li>
                         <li>
                             <span class="course-icon nodejs"></span>
-                            Curso de Node.js
+                            <span data-i18n="course2">Curso de Node.js</span>
                         </li>
                         <li>
                             <span class="course-icon digital"></span>
-                            Curso de Agente Digitalizador
+                            <span data-i18n="course3">Curso de Agente Digitalizador</span>
                         </li>
                     </ul>
                 </div>
 
                 <!-- Languages -->
                 <div class="glass-card">
-                    <h3 class="card-title">Idiomas</h3>
+                    <h3 class="card-title" data-i18n="skills.languages">Idiomas</h3>
                     <div class="language-bars">
                         <div class="skill">
                             <div class="skill-info">
-                                <span>Castellano</span>
+                                <span data-i18n="lang1">Castellano</span>
                                 <span>100%</span>
                             </div>
                             <div class="progress-bar">
@@ -235,7 +248,7 @@
                         </div>
                         <div class="skill">
                             <div class="skill-info">
-                                <span>Valenciano</span>
+                                <span data-i18n="lang2">Valenciano</span>
                                 <span>74%</span>
                             </div>
                             <div class="progress-bar">
@@ -244,11 +257,20 @@
                         </div>
                         <div class="skill">
                             <div class="skill-info">
-                                <span>Inglés</span>
+                                <span data-i18n="lang3">Inglés</span>
                                 <span>60%</span>
                             </div>
                             <div class="progress-bar">
                                 <div class="progress progress-green" data-width="60%"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-info">
+                                <span data-i18n="lang4">Francés</span>
+                                <span>30%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress progress-orange" data-width="30%"></div>
                             </div>
                         </div>
                     </div>
@@ -258,10 +280,11 @@
     </main>
 
     <footer>
-        <p>&copy; <span id="year"></span> Jose Ferrús Aparicio. Construido con HTML, CSS y JS.</p>
+        <p>&copy; <span id="year"></span><span data-i18n="footer.text"> Jose Ferrús Aparicio. Construido con HTML, CSS y JS.</span></p>
     </footer>
 
     <!-- Scripts -->
+    <script src="./translations.js"></script>
     <script src="./script.js"></script>
 </body>
 
