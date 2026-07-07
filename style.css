@@ -468,6 +468,10 @@ main {
     background-color: var(--accent-orange);
 }
 
+.timeline-dot.purple {
+    background-color: var(--accent-purple);
+}
+
 .timeline-content h3 {
     font-size: 1.5rem;
     margin-bottom: 0.2rem;
@@ -479,6 +483,18 @@ main {
     color: var(--accent-purple);
     margin-bottom: 1rem;
     font-weight: 600;
+}
+
+.timeline-content .project-list {
+    list-style-position: inside;
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+}
+
+.timeline-content .project-list li {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
 }
 
 .badge {
