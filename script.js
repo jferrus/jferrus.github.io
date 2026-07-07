@@ -20,9 +20,6 @@ function setLanguage(lang) {
     } else if (lang === 'ca') {
         document.title = "Jose Ferrús Aparicio | Enginyer de Programari a València";
         document.querySelector('meta[name="description"]').setAttribute("content", "Portfoli professional de Jose Ferrús Aparicio, Enginyer de Programari establert a València, Espanya.");
-    } else if (lang === 'fr') {
-        document.title = "Jose Ferrús Aparicio | Ingénieur Logiciel à Valence";
-        document.querySelector('meta[name="description"]').setAttribute("content", "Portfolio professionnel de Jose Ferrús Aparicio, Ingénieur Logiciel basé à Valence, Espagne.");
     } else {
         document.title = "Jose Ferrús Aparicio | Ingeniero de Software en Valencia";
         document.querySelector('meta[name="description"]').setAttribute("content", "Portfolio profesional de Jose Ferrús Aparicio, Ingeniero de Software radicado en Valencia, España, con 4 años de experiencia en desarrollo backend y frontend.");

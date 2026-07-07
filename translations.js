@@ -36,7 +36,6 @@ const translations = {
         "lang1": "Castellano",
         "lang2": "Valenciano",
         "lang3": "Inglés",
-        "lang4": "Francés",
         "footer.text": " Jose Ferrús Aparicio. Construido con HTML, CSS y JS."
     },
     en: {
@@ -76,7 +75,6 @@ const translations = {
         "lang1": "Spanish",
         "lang2": "Valencian",
         "lang3": "English",
-        "lang4": "French",
         "footer.text": " Jose Ferrús Aparicio. Built with HTML, CSS & JS."
     },
     ca: {
@@ -116,47 +114,6 @@ const translations = {
         "lang1": "Castellà",
         "lang2": "Valencià",
         "lang3": "Anglès",
-        "lang4": "Francès",
         "footer.text": " Jose Ferrús Aparicio. Construït amb HTML, CSS i JS."
-    },
-    fr: {
-        "nav.about": "À propos",
-        "nav.experience": "Expérience",
-        "nav.education": "Éducation",
-        "nav.skills": "Compétences",
-        "hero.greeting": "Bonjour, je suis",
-        "hero.title": "Ingénieur Logiciel à Valence",
-        "hero.bio": "Développeur de logiciels basé à <strong>Valence, Espagne</strong>.<br>4 ans d'expérience dans le secteur technologique.<br><span class=\"highlight-green\">2 ans en conseil</span> en équipe, et<br><span class=\"highlight-blue\">2 ans en tant qu'assistant de recherche</span> travaillant de manière autonome.",
-        "section.experience": "Expérience Professionnelle",
-        "exp1.title": "Technicien Intermédiaire",
-        "exp1.duration": "2 ans",
-        "exp1.desc": "Développement complet d'applications web, travaillant tant sur la partie <strong>Backend</strong> que <strong>Frontend</strong>.",
-        "exp2.title": "Développeur",
-        "exp2.duration": "2 ans",
-        "exp2.desc": "Spécialisation dans le développement <strong>Backend</strong>, construction de la logique métier.",
-        "exp3.title": "Technicien Support",
-        "exp3.duration": "3 mois",
-        "exp3.desc": "Résolution d'incidents logiciels et matériels. <br><span class=\"badge\">Note : 9/10</span>",
-        "exp4.title": "Technicien Support",
-        "exp4.duration": "1 mois",
-        "exp4.desc": "Résolution d'incidents informatiques dans une Mairie locale.",
-        "section.education": "Éducation",
-        "edu1.title": "Master de Recherche en Ingénierie Logicielle",
-        "edu1.date": "2024 - Présent",
-        "edu1.desc": "Études de ce master de recherche en cours dans le but d'élargir mes connaissances et de les appliquer dans le monde professionnel.",
-        "edu2.title": "Licence en Ingénierie Informatique",
-        "edu2.date": "Obtenu en 2018",
-        "edu2.desc": "Solide formation de base en informatique, algorithmes et développement de logiciels.",
-        "section.skills": "Compétences et Formation",
-        "skills.courses": "Cours Remarquables",
-        "course1": "Cours Angular",
-        "course2": "Cours Node.js",
-        "course3": "Cours d'Agent Numérisateur",
-        "skills.languages": "Langues",
-        "lang1": "Espagnol",
-        "lang2": "Valencien",
-        "lang3": "Anglais",
-        "lang4": "Français",
-        "footer.text": " Jose Ferrús Aparicio. Construit avec HTML, CSS et JS."
     }
 };
