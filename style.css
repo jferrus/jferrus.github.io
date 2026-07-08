@@ -258,7 +258,8 @@ main {
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    margin-top: -60px;
 }
 
 .profile-pic {
@@ -302,7 +303,7 @@ main {
 }
 
 .title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.2rem, 3vw, 2rem);
     font-weight: 600;
     color: var(--text-muted);
     margin-bottom: 1.5rem;
@@ -656,7 +657,7 @@ footer {
     }
 
     .hero {
-        flex-direction: column-reverse;
+        flex-direction: column;
         text-align: center;
         padding-top: 180px;
         gap: 2rem;
