@@ -631,6 +631,16 @@ main {
     background: var(--accent-orange);
 }
 
+.project-card {
+    transition: var(--transition);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-blue);
+    box-shadow: 0 10px 30px -10px rgba(102, 217, 239, 0.3);
+}
+
 /* Footer */
 footer {
     text-align: center;

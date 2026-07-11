@@ -36,8 +36,12 @@ const translations = {
         "skills.languages": "Idiomas",
         "lang1": "Castellano",
         "lang2": "Valenciano",
-        "lang3": "Inglés",
-        "footer.text": " Jose Ferrús Aparicio. Construido con HTML, CSS y JS."
+        "footer.text": " Jose Ferrús Aparicio. Construido con HTML, CSS y JS.",
+        "nav.projects": "Mini Proyectos",
+        "section.projects": "Mini Proyectos",
+        "projects.hands.title": "Post-its con Gestos",
+        "projects.hands.desc": "Aplicación web interactiva que utiliza visión artificial (MediaPipe Hands) para interactuar con notas adhesivas virtuales mediante gestos de la mano. Permite agarrar y arrastrar post-its cerrando el puño y soltarlos abriendo la mano, todo de forma privada y local.",
+        "projects.hands.button": "Abrir Proyecto"
     },
     en: {
         "nav.about": "About",
@@ -76,8 +80,12 @@ const translations = {
         "skills.languages": "Languages",
         "lang1": "Spanish",
         "lang2": "Valencian",
-        "lang3": "English",
-        "footer.text": " Jose Ferrús Aparicio. Built with HTML, CSS & JS."
+        "footer.text": " Jose Ferrús Aparicio. Built with HTML, CSS & JS.",
+        "nav.projects": "Mini Projects",
+        "section.projects": "Mini Projects",
+        "projects.hands.title": "Gesture Post-its",
+        "projects.hands.desc": "Interactive web application that uses computer vision (MediaPipe Hands) to interact with virtual sticky notes using hand gestures. It allows grabbing and dragging post-its by closing your fist and releasing them by opening your hand, all privately and locally.",
+        "projects.hands.button": "Open Project"
     },
     ca: {
         "nav.about": "Sobre mi",
@@ -117,6 +125,11 @@ const translations = {
         "lang1": "Castellà",
         "lang2": "Valencià",
         "lang3": "Anglès",
-        "footer.text": " Jose Ferrús Aparicio. Construït amb HTML, CSS i JS."
+        "footer.text": " Jose Ferrús Aparicio. Construït amb HTML, CSS i JS.",
+        "nav.projects": "Mini Projectes",
+        "section.projects": "Mini Projectes",
+        "projects.hands.title": "Post-its amb Gestos",
+        "projects.hands.desc": "Aplicació web interactiva que utilitza visió artificial (MediaPipe Hands) per interactuar amb notes adhesives virtuals mitjançant gestos de la mà. Permet agafar i arrossegar post-its tancant el puny i deixar-los anar obrint la mà, tot de manera privada i local.",
+        "projects.hands.button": "Obrir Projecte"
     }
 };
