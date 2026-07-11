@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eye-Track Keyboard</title>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.4/face_mesh.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3/camera_utils.js" crossorigin="anonymous"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a1a;color:#fff;font-family:'Segoe UI',sans-serif;display:flex;flex-direction:column;min-height:100vh;overflow:hidden}
+h1{margin:12px 0 8px;font-size:1.4rem;background:linear-gradient(135deg,#00d4ff,#7b2ff7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-align:center}
+.container{display:flex;gap:12px;padding:0 12px;flex:1;min-height:0}
+.left-panel{display:flex;flex-direction:column;gap:8px;width:320px;flex-shrink:0;overflow-y:auto}
+.video-wrap{position:relative;width:320px;height:240px;border-radius:12px;overflow:hidden;border:2px solid #7b2ff7;flex-shrink:0}
+.video-wrap video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
+.video-wrap canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
+#gaze-cursor{position:fixed;width:24px;height:24px;border-radius:50%;border:3px solid #ff3e6c;background:rgba(255,62,108,.25);pointer-events:none;transform:translate(-50%,-50%);z-index:9999;display:none}
+#gaze-cursor.active{display:block}
+.status{padding:8px 14px;border-radius:8px;background:#14142a;font-size:.85rem;line-height:1.5}
+.status .label{color:#888}
+.status .val{color:#00d4ff;font-weight:600}
+.status .on{color:#3e6;font-weight:700}
+.status .off{color:#f44}
+.text-display{width:100%;min-height:80px;max-height:160px;background:#14142a;border-radius:12px;border:2px solid #2a2a4a;padding:12px;font-size:1.1rem;line-height:1.7;overflow-y:auto;white-space:pre-wrap;word-break:break-word}
+.text-display .cursor-blink{display:inline-block;width:2px;height:1.1em;background:#00d4ff;vertical-align:text-bottom;animation:blink .7s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.right-panel{flex:1;display:flex;flex-direction:column;gap:8px;min-width:0}
+.keyboard{display:flex;flex-direction:column;gap:6px;user-select:none;flex:1;justify-content:center}
+.kb-row{display:flex;gap:6px;justify-content:center}
+.key{flex:1;max-width:80px;height:70px;border-radius:10px;background:#1a1a3a;border:1.5px solid #2a2a5a;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:600;cursor:pointer;transition:all .12s;position:relative;overflow:hidden}
+.key:hover,.key.gaze-hover{background:#2a2a5a;border-color:#7b2ff7;box-shadow:0 0 12px rgba(123,47,247,.4)}
+.key.active-key{background:#7b2ff7;border-color:#ff3e6c;box-shadow:0 0 18px rgba(255,62,108,.6);transform:scale(.95)}
+.key.space{flex:4;max-width:320px}
+.key.special{background:#12122a;font-size:.8rem}
+.key .hold-fill{position:absolute;bottom:0;left:0;height:0%;width:100%;background:linear-gradient(180deg,rgba(123,47,247,.5),rgba(255,62,108,.7));transition:height .08s;pointer-events:none}
+.instructions{background:#14142a;border-radius:12px;padding:12px;font-size:.78rem;line-height:1.5;border:1px solid #2a2a4a}
+.instructions b{color:#00d4ff}
+.instructions .step{margin:3px 0}
+.instructions .step span{color:#7b2ff7;font-weight:700;margin-right:4px}
+.calibrate-btn{margin-top:6px;padding:8px 16px;border:none;border-radius:8px;background:linear-gradient(135deg,#7b2ff7,#00d4ff);color:#fff;font-size:.85rem;font-weight:600;cursor:pointer;transition:transform .15s}
+.calibrate-btn:hover{transform:scale(1.04)}
+.calibrate-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+@media(max-width:900px){.container{flex-direction:column;align-items:center}.left-panel{width:100%;min-width:auto}}
+#calib-overlay{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.88);flex-direction:column;align-items:center;justify-content:center;gap:20px}
+#calib-dot{width:30px;height:30px;border-radius:50%;background:#ff3e6c;box-shadow:0 0 30px #ff3e6c;position:absolute;animation:pulse 1s infinite}
+#calib-label{position:absolute;bottom:15%;color:#fff;font-size:1.3rem;text-align:center}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.4)}}
+#calib-progress{position:absolute;bottom:10%;color:#aaa;font-size:.9rem}
+</style>
+</head>
+<body>
+
+<h1>Eye-Track Keyboard</h1>
+<div id="gaze-cursor"></div>
+
+<div class="container">
+  <div class="left-panel">
+    <div class="video-wrap">
+      <video id="cam" playsinline></video>
+      <canvas id="overlay"></canvas>
+    </div>
+    <div class="status">
+      <div><span class="label">Cámara: </span><span class="val" id="st-cam">No iniciada</span></div>
+      <div><span class="label">Cara: </span><span class="val" id="st-face">No detectada</span></div>
+      <div><span class="label">Mirada: </span><span class="val" id="st-gaze">---</span></div>
+      <div><span class="label">Pulsación: </span><span class="val" id="st-wink">---</span></div>
+      <div style="margin-top:4px"><span class="label">Calibración: </span><span class="val" id="st-calib">No realizada</span></div>
+    </div>
+    <div class="instructions">
+      <b>Instrucciones:</b>
+      <div class="step"><span>1.</span> Pulsa "Iniciar Cámara" y permite el acceso a la webcam.</div>
+      <div class="step"><span>2.</span> Pulsa "Calibrar" y mira a los 9 puntos que aparecen en pantalla.</div>
+      <div class="step"><span>3.</span> Mira la tecla que quieras pulsar — el cursor la seguirá.</div>
+      <div class="step"><span>4.</span> Mantén la mirada 5 segundos sobre la tecla — se pulsa sola.</div>
+      <div class="step"><span>5.</span> La tecla se escribirá. También puedes usar el teclado físico.</div>
+    </div>
+    <button class="calibrate-btn" id="btn-start">Iniciar Cámara</button>
+    <button class="calibrate-btn" id="btn-calibrate" style="display:none;background:linear-gradient(135deg,#ff3e6c,#ff9a3e)">Calibrar (9 puntos)</button>
+  </div>
+
+  <div class="right-panel">
+    <div class="text-display" id="text-display"><span class="cursor-blink"></span></div>
+    <div class="keyboard" id="keyboard"></div>
+  </div>
+</div>
+
+<div id="calib-overlay">
+  <div id="calib-dot"></div>
+  <div id="calib-label"></div>
+  <div id="calib-progress"></div>
+</div>
+
+<script>
+(function(){
+const MAX_SPEED=1,GAZE_THRESHOLD=130,DWELL_MS=2000,CALIB_SAMPLES=60;
+
+const KEYS=[
+  ['1','2','3','4','5','6','7','8','9','0','-'],
+  ['Q','W','E','R','T','Y','U','I','O','P','\''],
+  ['A','S','D','F','G','H','J','K','L','Ñ','°'],
+  ['Z','X','C','V','B','N','M',',','.','←',' ']
+];
+
+const video=document.getElementById('cam');
+const canvas=document.getElementById('overlay');
+const ctx=canvas.getContext('2d');
+const gazeCursor=document.getElementById('gaze-cursor');
+const textDisplay=document.getElementById('text-display');
+const stCam=document.getElementById('st-cam');
+const stFace=document.getElementById('st-face');
+const stGaze=document.getElementById('st-gaze');
+const stWink=document.getElementById('st-wink');
+const stCalib=document.getElementById('st-calib');
+const btnStart=document.getElementById('btn-start');
+const btnCalib=document.getElementById('btn-calibrate');
+const kbEl=document.getElementById('keyboard');
+const calibOverlay=document.getElementById('calib-overlay');
+const calibDot=document.getElementById('calib-dot');
+const calibLabel=document.getElementById('calib-label');
+const calibProgress=document.getElementById('calib-progress');
+
+let faceMesh=null,camReady=false;
+let calibrated=false,calibPoints=[];
+let rawGazeX=0.5,rawGazeY=0.5;
+let targetX=0.5,targetY=0.5;
+let gazeX=0.5,gazeY=0.5;
+let dwellKey=null,dwellStart=0;
+let textContent='';
+
+// Iris landmark indices (MediaPipe refineLandmarks)
+const L_IRIS=[468,469,470,471,472];
+const R_IRIS=[473,474,475,476,477];
+// Full eye contours for better bounds
+const L_EYE=[362,382,381,380,374,373,390,249,263,466,388,387,386,385,384,398];
+const R_EYE=[33,7,163,144,145,153,154,155,133,173,157,158,159,160,161,246];
+
+function buildKB(){
+  kbEl.innerHTML='';
+  KEYS.forEach(row=>{
+    const r=document.createElement('div');r.className='kb-row';
+    row.forEach(k=>{
+      const d=document.createElement('div');d.className='key';
+      if(k===' ')d.className+=' space';
+      d.dataset.key=k;
+      d.innerHTML=k+'<div class="hold-fill"></div>';
+      r.appendChild(d);
+    });
+    kbEl.appendChild(r);
+  });
+}
+buildKB();
+const allKeys=document.querySelectorAll('.key');
+
+function dst(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}
+
+function irisCenter(lm,isL){
+  const ids=isL?L_IRIS:R_IRIS;
+  let cx=0,cy=0;
+  ids.forEach(id=>{cx+=lm[id].x;cy+=lm[id].y});
+  return{x:cx/ids.length,y:cy/ids.length};
+}
+
+function eyeBounds(lm,isL){
+  const ids=isL?L_EYE:R_EYE;
+  let minX=1,maxX=0,minY=1,maxY=0;
+  ids.forEach(id=>{
+    const p=lm[id];
+    if(p.x<minX)minX=p.x;if(p.x>maxX)maxX=p.x;
+    if(p.y<minY)minY=p.y;if(p.y>maxY)maxY=p.y;
+  });
+  return{minX,maxX,minY,maxY};
+}
+
+function gazeNorm(lm){
+  const li=irisCenter(lm,true),ri=irisCenter(lm,false);
+  const lb=eyeBounds(lm,true),rb=eyeBounds(lm,false);
+  // Normalize iris X within eye width
+  const lx=(li.x-lb.minX)/Math.max(lb.maxX-lb.minX,.001);
+  const rx=(ri.x-rb.minX)/Math.max(rb.maxX-rb.minX,.001);
+  // Normalize iris Y within eye height
+  const ly=(li.y-lb.minY)/Math.max(lb.maxY-lb.minY,.001);
+  const ry=(ri.y-rb.minY)/Math.max(rb.maxY-rb.minY,.001);
+  return{x:(lx*0.5+rx*0.5),y:1-(ly*0.5+ry*0.5)};
+}
+
+function applyCal(rx,ry){
+  if(!calibrated||calibPoints.length<9)return{x:rx,y:ry};
+  // Find nearest 3 calibration points and interpolate
+  let best=[];
+  calibPoints.forEach((cp,i)=>{
+    const d=Math.hypot(rx-cp.x,ry-cp.y);
+    best.push({d,i});
+  });
+  best.sort((a,b)=>a.d-b.d);
+  // Use inverse distance weighting from nearest 3
+  let wx=0,wy=0,wsum=0;
+  for(let n=0;n<Math.min(3,best.length);n++){
+    const cp=calibPoints[best[n].i];
+    const w=1/Math.max(best[n].d,.0001);
+    wx+=cp.tx*w;
+    wy+=cp.ty*w;
+    wsum+=w;
+  }
+  return{x:Math.max(0,Math.min(1,wx/wsum)),y:Math.max(0,Math.min(1,wy/wsum))};
+}
+
+function getKeyAt(cx,cy){
+  let best=null,bd=Infinity;
+  allKeys.forEach(k=>{
+    const r=k.getBoundingClientRect();
+    const d=Math.hypot(cx-(r.left+r.right)/2,cy-(r.top+r.bottom)/2);
+    if(d<bd){bd=d;best=k}
+  });
+  return{k:best,d:bd};
+}
+
+function pressKey(el){
+  const v=el.dataset.key;
+  el.classList.add('active-key');
+  setTimeout(()=>el.classList.remove('active-key'),350);
+  if(v==='←')textContent=textContent.slice(0,-1);
+  else if(v===' ')textContent+=' ';
+  else textContent+=v;
+  renderText();
+}
+
+function renderText(){
+  textDisplay.innerHTML=esc(textContent)+'<span class="cursor-blink"></span>';
+  textDisplay.scrollTop=textDisplay.scrollHeight;
+}
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function process(lm){
+  const raw=gazeNorm(lm);
+  rawGazeX=raw.x;rawGazeY=raw.y;
+  const cal=applyCal(raw.x,raw.y);
+  targetX=cal.x;targetY=cal.y;
+
+  // Constant speed movement toward target
+  const dx=targetX-gazeX;
+  const dy=targetY-gazeY;
+  const dist=Math.hypot(dx,dy);
+  if(dist>0.001){
+    const step=Math.min(MAX_SPEED/1000,dist);
+    gazeX+=dx/dist*step;
+    gazeY+=dy/dist*step;
+  }
+
+  const cx=gazeX*window.innerWidth;
+  const cy=gazeY*window.innerHeight;
+  gazeCursor.style.left=cx+'px';
+  gazeCursor.style.top=cy+'px';
+  gazeCursor.classList.add('active');
+  stGaze.textContent='X:'+gazeX.toFixed(2)+' Y:'+gazeY.toFixed(2);
+
+  const gk=getKeyAt(cx,cy);
+  const onKey=gk.k&&gk.d<GAZE_THRESHOLD;
+
+  // Dwell detection: same key for DWELL_MS
+  if(onKey&&gk.k===dwellKey){
+    const elapsed=performance.now()-dwellStart;
+    const pct=Math.min(100,(elapsed/DWELL_MS)*100);
+    gk.k.querySelector('.hold-fill').style.height=pct+'%';
+    stWink.textContent='Mirando tecla... '+(elapsed/1000).toFixed(1)+'s';
+    stWink.className='val on';
+    if(elapsed>=DWELL_MS){
+      pressKey(gk.k);
+      dwellKey=null;dwellStart=0;
+      allKeys.forEach(k=>k.querySelector('.hold-fill').style.height='0%');
+    }
+  }else{
+    dwellKey=onKey?gk.k:null;
+    dwellStart=onKey?performance.now():0;
+    stWink.textContent='No';stWink.className='val off';
+    allKeys.forEach(k=>k.querySelector('.hold-fill').style.height='0%');
+  }
+
+  allKeys.forEach(k=>k.classList.remove('gaze-hover'));
+  if(onKey)gk.k.classList.add('gaze-hover');
+}
+
+function drawMesh(lm){
+  canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;
+  const w=canvas.width,h=canvas.height;
+  const oval=[10,338,297,332,284,251,389,356,454,323,361,288,397,365,379,378,400,377,152,148,176,149,150,136,172,58,132,93,234,127,162,21,54,103,67,109,10];
+  ctx.beginPath();
+  oval.forEach((id,i)=>{const p=lm[id];if(i===0)ctx.moveTo(p.x*w,p.y*h);else ctx.lineTo(p.x*w,p.y*h)});
+  ctx.closePath();ctx.strokeStyle='rgba(123,47,247,.5)';ctx.lineWidth=1;ctx.stroke();
+  [L_IRIS,R_IRIS].forEach(ids=>ids.forEach(id=>{
+    ctx.fillStyle='rgba(0,212,255,.9)';ctx.beginPath();ctx.arc(lm[id].x*w,lm[id].y*h,2,0,Math.PI*2);ctx.fill();
+  }));
+}
+
+function onResults(results){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  if(results.multiFaceLandmarks&&results.multiFaceLandmarks.length>0){
+    const lm=results.multiFaceLandmarks[0];
+    stFace.textContent='Detectada ✓';stFace.className='val on';
+    drawMesh(lm);process(lm);
+  }else{
+    stFace.textContent='No detectada';stFace.className='val off';
+  }
+}
+
+btnStart.addEventListener('click',async()=>{
+  btnStart.disabled=true;btnStart.textContent='Cargando modelo de IA...';
+  try{
+    faceMesh=new FaceMesh({locateFile:f=>'https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.4/'+f});
+    faceMesh.setOptions({maxNumFaces:1,refineLandmarks:true,minDetectionConfidence:0.5,minTrackingConfidence:0.5});
+    faceMesh.onResults(onResults);
+
+    const stream=await navigator.mediaDevices.getUserMedia({video:{width:640,height:480,facingMode:'user'}});
+    video.srcObject=stream;await video.play();
+    canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;
+    camReady=true;stCam.textContent='Conectada ✓';stCam.className='val on';
+    btnCalib.style.display='block';
+
+    const cam=new Camera(video,{
+      onFrame:async()=>{if(faceMesh)await faceMesh.send({image:video})},
+      width:640,height:480
+    });
+    cam.start();
+    btnStart.textContent='Cámara activa ✓';
+    btnStart.style.background='linear-gradient(135deg,#3e6,#36f)';
+  }catch(e){stCam.textContent='Error: '+e.message;stCam.className='val off'}
+});
+
+btnCalib.addEventListener('click',()=>{
+  calibPoints=[];
+  const pts=[
+    {x:'10%',y:'10%',l:'Superior izquierda'},
+    {x:'50%',y:'10%',l:'Superior centro'},
+    {x:'90%',y:'10%',l:'Superior derecha'},
+    {x:'10%',y:'50%',l:'Centro izquierda'},
+    {x:'50%',y:'50%',l:'Centro (mira al frente)'},
+    {x:'90%',y:'50%',l:'Centro derecha'},
+    {x:'10%',y:'90%',l:'Inferior izquierda'},
+    {x:'50%',y:'90%',l:'Inferior centro'},
+    {x:'90%',y:'90%',l:'Inferior derecha'}
+  ];
+  calibOverlay.style.display='flex';
+  showPt(pts,0);
+});
+
+function showPt(pts,i){
+  if(i>=pts.length){
+    calibrated=true;stCalib.textContent='Completada ✓';stCalib.className='val on';
+    calibOverlay.style.display='none';return;
+  }
+  calibDot.style.left=pts[i].x;calibDot.style.top=pts[i].y;
+  calibLabel.textContent='Mira el punto ('+(i+1)+'/9): '+pts[i].l;
+  // Convert percentage to target position
+  const tx=parseFloat(pts[i].x)/100;
+  const ty=parseFloat(pts[i].y)/100;
+  let cnt=0,samples=[];
+  const iv=setInterval(()=>{
+    cnt++;calibProgress.textContent='Muestreando... '+cnt+'/'+CALIB_SAMPLES;
+    samples.push({x:rawGazeX,y:rawGazeY});
+    if(cnt>=CALIB_SAMPLES){
+      clearInterval(iv);
+      calibPoints.push({
+        x:samples.reduce((a,s)=>a+s.x,0)/samples.length,
+        y:samples.reduce((a,s)=>a+s.y,0)/samples.length,
+        tx:tx,ty:ty
+      });
+      showPt(pts,i+1);
+    }
+  },50);
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Backspace'){e.preventDefault();textContent=textContent.slice(0,-1);renderText()}
+  else if(e.key==='Enter'){textContent+='\n';renderText()}
+  else if(e.key.length===1&&!e.ctrlKey&&!e.metaKey){textContent+=e.key;renderText()}
+});
+})();
+</script>
+</body>
+</html>
