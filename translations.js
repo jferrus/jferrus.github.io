@@ -42,7 +42,10 @@ const translations = {
         "projects.hands.desc": "Aplicación web interactiva que utiliza visión artificial (MediaPipe Hands) para interactuar con notas adhesivas virtuales mediante gestos de la mano. Permite agarrar y arrastrar post-its cerrando el puño y soltarlos abriendo la mano, todo de forma privada y local.",
         "projects.hands.button": "Abrir Proyecto",
         "projects.writtingeyes.title": "Ojos que escriben",
-        "projects.writtingeyes.desc": "Este prototipo es una innovadora herramienta de asistencia tecnológica que permite a los usuarios redactar textos y comunicarse utilizando únicamente el movimiento de sus ojos. Mediante un sistema de cámara que captura el seguimiento ocular y un teclado virtual adaptativo, el dispositivo traduce la fijación visual en caracteres, ofreciendo una alternativa accesible e independiente para personas con movilidad reducida o discapacidades motoras severas."
+        "projects.writtingeyes.desc": "Este prototipo es una innovadora herramienta de asistencia tecnológica que permite a los usuarios redactar textos y comunicarse utilizando únicamente el movimiento de sus ojos. Mediante un sistema de cámara que captura el seguimiento ocular y un teclado virtual adaptativo, el dispositivo traduce la fijación visual en caracteres, ofreciendo una alternativa accesible e independiente para personas con movilidad reducida o discapacidades motoras severas.",
+        "projects.drive.title": "PsicoDrive - Simulador de Conducción",
+        "projects.drive.desc": "Simulador interactivo del test psicotécnico de coordinación bimanual (Test de los Caminos) requerido por la DGT para el carnet de conducir. Entrena la coordinación de ambas manos de forma simultánea con feedback en tiempo real y puntuación final.",
+        "projects.drive.button": "Abrir Proyecto"
 
     },
     en: {
@@ -89,7 +92,10 @@ const translations = {
         "projects.hands.desc": "Interactive web application that uses computer vision (MediaPipe Hands) to interact with virtual sticky notes using hand gestures. It allows grabbing and dragging post-its by closing your fist and releasing them by opening your hand, all privately and locally.",
         "projects.hands.button": "Open Project",
         "projects.writtingeyes.title": "Writting eyes",
-        "projects.writtingeyes.desc": "This prototype is an innovative assistive technology tool that enables users to compose text and communicate using only eye movements. Through a camera system that tracks eye movement and an adaptive virtual keyboard, the device translates visual fixation into characters, offering an accessible and independent alternative for individuals with limited mobility or severe motor impairments."
+        "projects.writtingeyes.desc": "This prototype is an innovative assistive technology tool that enables users to compose text and communicate using only eye movements. Through a camera system that tracks eye movement and an adaptive virtual keyboard, the device translates visual fixation into characters, offering an accessible and independent alternative for individuals with limited mobility or severe motor impairments.",
+        "projects.drive.title": "PsicoDrive - Driving Simulator",
+        "projects.drive.desc": "Interactive simulator of the psychotechnical bimanual coordination test (Trail Making Test) required by the DGT for the driving license. Trains the coordination of both hands simultaneously with real-time feedback and a final score.",
+        "projects.drive.button": "Open Project"
     },
     ca: {
         "nav.about": "Sobre mi",
@@ -136,7 +142,10 @@ const translations = {
         "projects.hands.desc": "Aplicació web interactiva que utilitza visió artificial (MediaPipe Hands) per interactuar amb notes adhesives virtuals mitjançant gestos de la mà. Permet agafar i arrossegar post-its tancant el puny i deixar-los anar obrint la mà, tot de manera privada i local.",
         "projects.hands.button": "Obrir Projecte",
         "projects.writtingeyes.title": "Ulls que escriuen",
-        "projects.writtingeyes.desc": "Aquest prototip és una eina innovadora d'assistència tecnològica que permet als usuaris redactar textos i comunicar-se utilitzant únicament el moviment dels seus ulls. Mitjançant un sistema de càmera que captura el seguiment ocular i un teclat virtual adaptatiu, el dispositiu tradueix la fixació visual en caràcters, oferint una alternativa accessible i independent per a persones amb mobilitat reduïda o discapacitats motores severes."
+        "projects.writtingeyes.desc": "Aquest prototip és una eina innovadora d'assistència tecnològica que permet als usuaris redactar textos i comunicar-se utilitzant únicament el moviment dels seus ulls. Mitjançant un sistema de càmera que captura el seguiment ocular i un teclat virtual adaptatiu, el dispositiu tradueix la fixació visual en caràcters, oferint una alternativa accessible i independent per a persones amb mobilitat reduïda o discapacitats motores severes.",
+        "projects.drive.title": "PsicoDrive - Simulador de Conducció",
+        "projects.drive.desc": "Simulador interactiu del test psicoticnic de coordinació bimanual (Test dels Camins) requerit per la DGT per al carnet de conduir. Entrena la coordinació de les dues mans de forma simultània amb feedback en temps real i puntuació final.",
+        "projects.drive.button": "Obrir Projecte"
 
     }
 };

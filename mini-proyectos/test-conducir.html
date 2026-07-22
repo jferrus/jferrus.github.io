@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PsicoDrive - Simulador Psicotécnico de Conducción Bimanual</title>
+  <meta name="description" content="Entrena tu coordinación bimanual para el examen psicotécnico de conducir (DGT). Simulador web interactivo con feedback en tiempo real.">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Pantalla de Inicio / Menú Principal -->
+    <div id="menuScreen" class="screen active">
+      <header class="hero-header">
+        <div class="logo-container">
+          <div class="logo-icon">
+            <span class="pulse-ring"></span>
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              <path d="M2 12h20"/>
+            </svg>
+          </div>
+          <h1>PSICO<span>DRIVE</span></h1>
+        </div>
+        <p class="subtitle">Simulador de Coordinación Bimanual (Test de los Caminos)</p>
+      </header>
+
+      <main class="menu-content">
+        <section class="config-panel card">
+          <h2>Configuración de la Prueba</h2>
+          
+          <div class="form-group">
+            <label>Modo de Juego</label>
+            <div class="toggle-buttons" id="modeSelector">
+              <button class="toggle-btn active" data-mode="exam">
+                <span class="btn-icon">⏱️</span>
+                <span class="btn-text">Examen Oficial<small>60 segundos</small></span>
+              </button>
+              <button class="toggle-btn" data-mode="training">
+                <span class="btn-icon">♾️</span>
+                <span class="btn-text">Entrenamiento<small>Tiempo ilimitado</small></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group" id="difficultyGroup" style="display: none;">
+            <label for="difficulty">Dificultad</label>
+            <select id="difficulty" class="custom-select">
+              <option value="easy">Fácil (Velocidad lenta, carriles anchos)</option>
+              <option value="medium" selected>Normal (Velocidad y curvas estándar)</option>
+              <option value="hard">Difícil (Velocidad rápida, curvas cerradas)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Preferencias</label>
+            <div class="checkbox-wrapper">
+              <label class="switch">
+                <input type="checkbox" id="soundToggle" checked>
+                <span class="slider round"></span>
+              </label>
+              <span class="checkbox-label">Activar zumbido de penalización (Sonido)</span>
+            </div>
+          </div>
+
+          <button id="startBtn" class="btn btn-primary btn-glowing">
+            INICIAR PRUEBA
+          </button>
+        </section>
+
+        <section class="instructions-panel card">
+          <h2>Cómo Jugar</h2>
+          <div class="controls-guide">
+            <div class="control-hand left-hand">
+              <div class="key-badge">A</div>
+              <div class="key-badge">D</div>
+              <p>Mano Izquierda<br><strong>Carril Azul</strong></p>
+            </div>
+            <div class="divider-line"></div>
+            <div class="control-hand right-hand">
+              <div class="key-badge">←</div>
+              <div class="key-badge">→</div>
+              <p>Mano Derecha<br><strong>Carril Rosa</strong></p>
+            </div>
+          </div>
+          <div class="instructions-text">
+            <p>Mantén ambos <strong>cuadrados</strong> dentro de los carriles que bajan por la pantalla. Si alguno de ellos toca los bordes exteriores, escucharás un zumbido y se acumulará tiempo de penalización.</p>
+            <p class="exam-note">⚠️ En el <strong>Examen Oficial</strong>, para obtener el <strong>APTO</strong> debes tener una precisión superior al <strong>95%</strong> (menos del 5% del tiempo fuera de carril).</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Pantalla de Juego -->
+    <div id="gameScreen" class="screen">
+      <header class="hud-header">
+        <div class="hud-item timer">
+          <span class="hud-label">TIEMPO</span>
+          <span class="hud-value" id="hudTime">60.0s</span>
+        </div>
+        <div class="hud-item mistakes">
+          <span class="hud-label">SALIDAS (ERRORES)</span>
+          <span class="hud-value" id="hudMistakes">0</span>
+        </div>
+        <div class="hud-item accuracy">
+          <span class="hud-label">PRECISIÓN</span>
+          <span class="hud-value font-orbitron" id="hudAccuracy">100.0%</span>
+        </div>
+      </header>
+
+      <div class="game-container">
+        <!-- Overlay del countdown (3, 2, 1...) -->
+        <div id="countdownOverlay" class="overlay">
+          <div class="countdown-number" id="countdownText">3</div>
+        </div>
+
+        <!-- Canvas del Juego -->
+        <canvas id="gameCanvas" width="600" height="700"></canvas>
+      </div>
+
+      <footer class="game-footer">
+        <button id="exitGameBtn" class="btn btn-secondary">Salir al Menú</button>
+      </footer>
+    </div>
+
+    <!-- Pantalla de Resultados -->
+    <div id="resultsScreen" class="screen">
+      <div class="results-card card glassmorphic">
+        <header class="results-header">
+          <h2 class="title-glow">Resultados de la Prueba</h2>
+          <div id="resultStatus" class="result-badge">APTO</div>
+        </header>
+
+        <main class="results-content">
+          <div class="stats-summary-grid">
+            <div class="stat-box">
+              <span class="stat-num font-orbitron" id="resAccuracy">98.4%</span>
+              <span class="stat-lbl">Precisión Total</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num font-orbitron" id="resMistakes">2</span>
+              <span class="stat-lbl">Errores Totales</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num font-orbitron" id="resTime">60s</span>
+              <span class="stat-lbl">Tiempo de Prueba</span>
+            </div>
+          </div>
+
+          <div class="hand-details">
+            <h3>Desglose de Coordinación</h3>
+            
+            <div class="hand-row">
+              <div class="hand-info">
+                <span class="hand-indicator left"></span>
+                <span>Mano Izquierda (A / D)</span>
+              </div>
+              <div class="hand-stats">
+                <div class="stat-detail">
+                  <span class="lbl">Errores:</span>
+                  <span class="val font-orbitron" id="resLeftMistakes">1</span>
+                </div>
+                <div class="stat-detail">
+                  <span class="lbl">Fuera de vía:</span>
+                  <span class="val font-orbitron" id="resLeftTime">0.42s</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hand-row">
+              <div class="hand-info">
+                <span class="hand-indicator right"></span>
+                <span>Mano Derecha (← / →)</span>
+              </div>
+              <div class="hand-stats">
+                <div class="stat-detail">
+                  <span class="lbl">Errores:</span>
+                  <span class="val font-orbitron" id="resRightMistakes">1</span>
+                </div>
+                <div class="stat-detail">
+                  <span class="lbl">Fuera de vía:</span>
+                  <span class="val font-orbitron" id="resRightTime">0.51s</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feedback-msg" id="resultsFeedback">
+            ¡Excelente! Cumples con los requisitos psicofísicos de coordinación visomotora.
+          </div>
+        </main>
+
+        <footer class="results-footer">
+          <button id="restartBtn" class="btn btn-primary btn-glowing">REPETIR PRUEBA</button>
+          <button id="menuBtn" class="btn btn-secondary">MENÚ PRINCIPAL</button>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
