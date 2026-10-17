@@ -47,19 +47,6 @@ const translations = {
         "tech.soft": "Competencias Corporativas",
         "tech.soft.desc": "Adaptación a nuevas herramientas, autonomía, gestión del tiempo y traducción de requisitos de negocio",
         "footer.text": " Jose Ferrús Aparicio. Construido con HTML, CSS y JS.",
-        "nav.projects": "Mini Proyectos",
-        "section.projects": "Mini Proyectos",
-        "projects.hands.title": "Post-its con Gestos",
-        "projects.hands.desc": "Aplicación web interactiva que utiliza visión artificial (MediaPipe Hands) para interactuar con notas adhesivas virtuales mediante gestos de la mano. Permite agarrar y arrastrar post-its cerrando el puño y soltarlos abriendo la mano, todo de forma privada y local.",
-        "projects.hands.button": "Abrir Proyecto",
-        "projects.writtingeyes.title": "Ojos que escriben",
-        "projects.writtingeyes.desc": "Este prototipo es una innovadora herramienta de asistencia tecnológica que permite a los usuarios redactar textos y comunicarse utilizando únicamente el movimiento de sus ojos. Mediante un sistema de cámara que captura el seguimiento ocular y un teclado virtual adaptativo, el dispositivo traduce la fijación visual en caracteres, ofreciendo una alternativa accesible e independiente para personas con movilidad reducida o discapacidades motoras severas.",
-        "projects.drive.title": "PsicoDrive - Simulador de Conducción",
-        "projects.drive.desc": "Simulador interactivo del test psicotécnico de coordinación bimanual (Test de los Caminos) requerido por la DGT para el carnet de conducir. Entrena la coordinación de ambas manos de forma simultánea con feedback en tiempo real y puntuación final.",
-        "projects.drive.button": "Abrir Proyecto",
-        "projects.nose.title": "Nariz Escribe",
-        "projects.nose.desc": "Teclado virtual controlado por la nariz usando visión artificial (MediaPipe Face Mesh). Detecta el movimiento de la punta de la nariz a través de la cámara y lo convierte en un cursor para seleccionar letras, permitiendo escribir texto sin usar las manos.",
-        "projects.nose.button": "Abrir Proyecto"
 
     },
     en: {
@@ -110,20 +97,7 @@ const translations = {
         "tech.db.desc": "MySQL, PostgreSQL, Oracle, Git, GitHub Copilot, Jira, Linux",
         "tech.soft": "Corporate Competencies",
         "tech.soft.desc": "Adaptation to new tools, autonomy, time management and business requirements translation",
-        "footer.text": " Jose Ferrús Aparicio. Built with HTML, CSS & JS.",
-        "nav.projects": "Mini Projects",
-        "section.projects": "Mini Projects",
-        "projects.hands.title": "Gesture Post-its",
-        "projects.hands.desc": "Interactive web application that uses computer vision (MediaPipe Hands) to interact with virtual sticky notes using hand gestures. It allows grabbing and dragging post-its by closing your fist and releasing them by opening your hand, all privately and locally.",
-        "projects.hands.button": "Open Project",
-        "projects.writtingeyes.title": "Writting eyes",
-        "projects.writtingeyes.desc": "This prototype is an innovative assistive technology tool that enables users to compose text and communicate using only eye movements. Through a camera system that tracks eye movement and an adaptive virtual keyboard, the device translates visual fixation into characters, offering an accessible and independent alternative for individuals with limited mobility or severe motor impairments.",
-        "projects.drive.title": "PsicoDrive - Driving Simulator",
-        "projects.drive.desc": "Interactive simulator of the psychotechnical bimanual coordination test (Trail Making Test) required by the DGT for the driving license. Trains the coordination of both hands simultaneously with real-time feedback and a final score.",
-        "projects.drive.button": "Open Project",
-        "projects.nose.title": "Nose Writes",
-        "projects.nose.desc": "Virtual keyboard controlled by the nose using computer vision (MediaPipe Face Mesh). It detects the movement of the nose tip through the camera and turns it into a cursor to select letters, allowing you to type text without using your hands.",
-        "projects.nose.button": "Open Project"
+        "footer.text": " Jose Ferrús Aparicio. Built with HTML, CSS & JS."
     },
     ca: {
         "nav.about": "Sobre mi",
@@ -180,20 +154,7 @@ const translations = {
         "tech.db.desc": "MySQL, PostgreSQL, Oracle, Git, GitHub Copilot, Jira, Linux",
         "tech.soft": "Competències Corporatives",
         "tech.soft.desc": "Adaptació a noves eines, autonomia, gestió del temps i traducció de requisits de negoci",
-        "footer.text": " Jose Ferrús Aparicio. Construït amb HTML, CSS i JS.",
-        "nav.projects": "Mini Projectes",
-        "section.projects": "Mini Projectes",
-        "projects.hands.title": "Post-its amb Gestos",
-        "projects.hands.desc": "Aplicació web interactiva que utilitza visió artificial (MediaPipe Hands) per interactuar amb notes adhesives virtuals mitjançant gestos de la mà. Permet agafar i arrossegar post-its tancant el puny i deixar-los anar obrint la mà, tot de manera privada i local.",
-        "projects.hands.button": "Obrir Projecte",
-        "projects.writtingeyes.title": "Ulls que escriuen",
-        "projects.writtingeyes.desc": "Aquest prototip és una eina innovadora d'assistència tecnològica que permet als usuaris redactar textos i comunicar-se utilitzant únicament el moviment dels seus ulls. Mitjançant un sistema de càmera que captura el seguiment ocular i un teclat virtual adaptatiu, el dispositiu tradueix la fixació visual en caràcters, oferint una alternativa accessible i independent per a persones amb mobilitat reduïda o discapacitats motores severes.",
-        "projects.drive.title": "PsicoDrive - Simulador de Conducció",
-        "projects.drive.desc": "Simulador interactiu del test psicoticnic de coordinació bimanual (Test dels Camins) requerit per la DGT per al carnet de conduir. Entrena la coordinació de les dues mans de forma simultània amb feedback en temps real i puntuació final.",
-        "projects.drive.button": "Obrir Projecte",
-        "projects.nose.title": "Nas Escriu",
-        "projects.nose.desc": "Teclat virtual controlat pel nas utilitzant visió artificial (MediaPipe Face Mesh). Detecta el moviment de la punta del nas a través de la càmera i el converteix en un cursor per seleccionar lletres, permetent escriure text sense usar les mans.",
-        "projects.nose.button": "Obrir Projecte"
+        "footer.text": " Jose Ferrús Aparicio. Construït amb HTML, CSS i JS."
 
     }
 };
