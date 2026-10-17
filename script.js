@@ -15,14 +15,14 @@ function setLanguage(lang) {
     // Actualizar título y meta tags si lo deseas
     // (Opcional, pero recomendado para SEO)
     if (lang === 'en') {
-        document.title = "Jose Ferrús Aparicio | Software Engineer in Valencia";
-        document.querySelector('meta[name="description"]').setAttribute("content", "Professional portfolio of Jose Ferrús Aparicio, Software Engineer based in Valencia, Spain.");
+        document.title = "Jose Ferrús Aparicio | IT Support Technician in Valencia";
+        document.querySelector('meta[name="description"]').setAttribute("content", "Professional portfolio of Jose Ferrús Aparicio, IT Support Technician based in Valencia, Spain, with experience in hardware and software issue resolution and user support.");
     } else if (lang === 'ca') {
-        document.title = "Jose Ferrús Aparicio | Enginyer de Programari a València";
-        document.querySelector('meta[name="description"]').setAttribute("content", "Portfoli professional de Jose Ferrús Aparicio, Enginyer de Programari establert a València, Espanya.");
+        document.title = "Jose Ferrús Aparicio | Tècnic de Suport IT a València";
+        document.querySelector('meta[name="description"]').setAttribute("content", "Portfoli professional de Jose Ferrús Aparicio, Tècnic de Suport IT establert a València, Espanya, amb experiència en resolució d'incidències de maquinari i programari i atenció a usuaris.");
     } else {
-        document.title = "Jose Ferrús Aparicio | Ingeniero de Software en Valencia";
-        document.querySelector('meta[name="description"]').setAttribute("content", "Portfolio profesional de Jose Ferrús Aparicio, Ingeniero de Software radicado en Valencia, España, con 4 años de experiencia en desarrollo backend y frontend.");
+        document.title = "Jose Ferrús Aparicio | Técnico de Soporte IT en Valencia";
+        document.querySelector('meta[name="description"]').setAttribute("content", "Portfolio profesional de Jose Ferrús Aparicio, Técnico de Soporte IT radicado en Valencia, España, con experiencia en resolución de incidencias de hardware y software, atención a usuarios y ticketing.");
     }
 }
 
