@@ -1,8 +1,43 @@
 /* 
-   Monokai-inspired Design System 
-   Aesthetics: Dark mode, neon accents, glassmorphism
+   Design System 
+   Aesthetics: Clean Light Mode (default) & Monokai Dark Mode (optional)
 */
 :root {
+    /* Light Mode Colors (Default) */
+    --bg-color: #F8FAFC;
+    --bg-darker: #F1F5F9;
+    --text-main: #0F172A;
+    --text-muted: #475569;
+
+    /* Accents (Optimized for Light Mode contrast) */
+    --accent-pink: #E11D48;
+    --accent-green: #16A34A;
+    --accent-blue: #0284C7;
+    --accent-orange: #EA580C;
+    --accent-purple: #7C3AED;
+    --accent-yellow: #D97706;
+
+    /* Glassmorphism & Surfaces */
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-bg-hover: rgba(255, 255, 255, 0.95);
+    --glass-border: rgba(15, 23, 42, 0.09);
+    --glass-border-hover: rgba(15, 23, 42, 0.18);
+    --glass-shadow: 0 8px 30px 0 rgba(15, 23, 42, 0.06);
+    --navbar-bg: rgba(248, 250, 252, 0.85);
+    --navbar-scrolled-bg: rgba(248, 250, 252, 0.96);
+    --navbar-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+    --badge-bg: rgba(22, 163, 74, 0.12);
+    --progress-track: rgba(15, 23, 42, 0.08);
+    --blob-opacity: 0.16;
+
+    /* Typography */
+    --font-family: 'Outfit', sans-serif;
+
+    /* Transitions */
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+[data-theme="dark"] {
     /* Monokai Colors */
     --bg-color: #272822;
     --bg-darker: #1e1f1c;
@@ -17,16 +52,18 @@
     --accent-purple: #AE81FF;
     --accent-yellow: #E6DB74;
 
-    /* Glassmorphism */
+    /* Glassmorphism & Surfaces */
     --glass-bg: rgba(248, 248, 242, 0.03);
+    --glass-bg-hover: rgba(248, 248, 242, 0.05);
     --glass-border: rgba(248, 248, 242, 0.08);
+    --glass-border-hover: rgba(255, 255, 255, 0.15);
     --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-
-    /* Typography */
-    --font-family: 'Outfit', sans-serif;
-
-    /* Transitions */
-    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --navbar-bg: rgba(39, 40, 34, 0.8);
+    --navbar-scrolled-bg: rgba(39, 40, 34, 0.95);
+    --navbar-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    --badge-bg: rgba(166, 226, 46, 0.15);
+    --progress-track: rgba(255, 255, 255, 0.1);
+    --blob-opacity: 0.4;
 }
 
 * {
@@ -46,6 +83,7 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Background Animations */
@@ -63,7 +101,7 @@ body {
 .blob {
     position: absolute;
     filter: blur(80px);
-    opacity: 0.4;
+    opacity: var(--blob-opacity);
     border-radius: 50%;
     animation: float 20s infinite ease-in-out alternate;
 }
@@ -105,7 +143,7 @@ body {
     top: 0;
     width: 100%;
     padding: 1.5rem 0;
-    background: rgba(39, 40, 34, 0.8);
+    background: var(--navbar-bg);
     backdrop-filter: blur(12px);
     z-index: 1000;
     border-bottom: 1px solid var(--glass-border);
@@ -114,8 +152,8 @@ body {
 
 .navbar.scrolled {
     padding: 1rem 0;
-    background: rgba(39, 40, 34, 0.95);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    background: var(--navbar-scrolled-bg);
+    box-shadow: var(--navbar-shadow);
 }
 
 .nav-content {
@@ -182,7 +220,7 @@ body {
 }
 
 .lang-btn {
-    background: transparent;
+    background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     border-radius: 4px;
     padding: 0.3rem 0.5rem;
@@ -196,8 +234,30 @@ body {
 }
 
 .lang-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--glass-bg-hover);
+    border-color: var(--glass-border-hover);
     transform: translateY(-2px);
+}
+
+.theme-btn {
+    margin-left: 0.25rem;
+    padding: 0.35rem 0.5rem;
+}
+
+.icon-sun {
+    display: none;
+}
+
+.icon-moon {
+    display: block;
+}
+
+[data-theme="dark"] .icon-sun {
+    display: block;
+}
+
+[data-theme="dark"] .icon-moon {
+    display: none;
 }
 
 /* Layout */
@@ -334,9 +394,15 @@ main {
 
 .bio {
     max-width: 600px;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
+    line-height: 1.75;
     color: var(--text-muted);
     margin-bottom: 2.5rem;
+}
+
+.bio strong {
+    color: var(--text-main);
+    font-weight: 600;
 }
 
 .highlight-green {
@@ -359,8 +425,34 @@ main {
 
 .contact-info {
     display: flex;
+    align-items: center;
     gap: 1rem;
     flex-wrap: wrap;
+}
+
+.email-display {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding-left: 1rem;
+    margin-left: 0.25rem;
+    border-left: 3px solid var(--accent-pink);
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.4px;
+    user-select: all;
+}
+
+.email-icon {
+    color: var(--accent-pink);
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 8px rgba(249, 38, 114, 0.35));
+}
+
+.email-sep {
+    color: var(--accent-pink);
+    font-weight: 800;
 }
 
 .btn {
@@ -377,15 +469,16 @@ main {
 }
 
 .btn-primary {
-    background-color: transparent;
-    color: var(--accent-pink);
+    background-color: var(--accent-pink);
+    color: #FFFFFF;
     border: 2px solid var(--accent-pink);
+    box-shadow: 0 4px 15px rgba(249, 38, 114, 0.3);
 }
 
 .btn-primary:hover {
-    background-color: rgba(249, 38, 114, 0.1);
+    filter: brightness(1.08);
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(249, 38, 114, 0.2);
+    box-shadow: 0 8px 25px rgba(249, 38, 114, 0.45);
 }
 
 .btn-secondary {
@@ -396,7 +489,8 @@ main {
 }
 
 .btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--glass-bg-hover);
+    border-color: var(--glass-border-hover);
     transform: translateY(-2px);
 }
 
@@ -413,8 +507,8 @@ main {
 
 .glass-card:hover {
     transform: translateY(-5px);
-    border-color: rgba(255, 255, 255, 0.15);
-    background: rgba(248, 248, 242, 0.05);
+    border-color: var(--glass-border-hover);
+    background: var(--glass-bg-hover);
 }
 
 /* Timeline */
@@ -501,7 +595,7 @@ main {
 .badge {
     display: inline-block;
     padding: 0.2rem 0.6rem;
-    background: rgba(166, 226, 46, 0.15);
+    background: var(--badge-bg);
     color: var(--accent-green);
     border-radius: 4px;
     font-size: 0.85rem;
@@ -604,7 +698,7 @@ main {
 .progress-bar {
     width: 100%;
     height: 8px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--progress-track);
     border-radius: 4px;
     overflow: hidden;
 }
@@ -683,6 +777,14 @@ footer {
 
     .btn {
         width: 100%;
+        justify-content: center;
+    }
+
+    .email-display {
+        border-left: none;
+        padding-left: 0;
+        margin-left: 0;
+        margin-top: 0.5rem;
         justify-content: center;
     }
 }

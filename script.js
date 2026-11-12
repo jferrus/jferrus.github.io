@@ -1,3 +1,18 @@
+// Lógica de Tema (Modo Claro por defecto, Modo Oscuro opcional)
+function setTheme(theme) {
+    if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+    }
+    localStorage.setItem('preferredTheme', theme);
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+}
+
 // Lógica de Internacionalización
 function setLanguage(lang) {
     if (!translations[lang]) return;
@@ -15,18 +30,22 @@ function setLanguage(lang) {
     // Actualizar título y meta tags si lo deseas
     // (Opcional, pero recomendado para SEO)
     if (lang === 'en') {
-        document.title = "Jose Ferrús Aparicio | Software & Integration Engineer in Valencia";
-        document.querySelector('meta[name="description"]').setAttribute("content", "Professional portfolio of Jose Ferrús Aparicio, Software & Integration Engineer based in Valencia, Spain, using AI agents for software generation with experience in application development and integration.");
+        document.title = "Jose Ferrús Aparicio | Agentic Software Engineer - Available for Remote Work";
+        document.querySelector('meta[name="description"]').setAttribute("content", "Professional portfolio of Jose Ferrús Aparicio, Agentic Software Engineer specialized in service-oriented architectures and use of AI agents for software generation. Available for remote work in Spain and hybrid or on-site in Valencia.");
     } else if (lang === 'ca') {
-        document.title = "Jose Ferrús Aparicio | Software & Integration Engineer a València";
-        document.querySelector('meta[name="description"]').setAttribute("content", "Portfoli professional de Jose Ferrús Aparicio, Software & Integration Engineer establert a València, Espanya, amb experiència en desenvolupament i integració d'aplicacions i ús d'agents d'IA per a la generació de programari.");
+        document.title = "Jose Ferrús Aparicio | Agentic Software Engineer - Disponible per a treball remot";
+        document.querySelector('meta[name="description"]').setAttribute("content", "Portfoli professional de Jose Ferrús Aparicio, Agentic Software Engineer especialitzat en arquitectures orientades a serveis i ús d'agents d'IA per a la generació de programari. Disponible per a treball remot a Espanya i híbrid o presencial a València.");
     } else {
-        document.title = "Jose Ferrús Aparicio | Software & Integration Engineer en Valencia";
-        document.querySelector('meta[name="description"]').setAttribute("content", "Portfolio profesional de Jose Ferrús Aparicio, Software & Integration Engineer radicado en Valencia, España, con experiencia en desarrollo e integración de aplicaciones y uso de agentes de IA para la generación de software.");
+        document.title = "Jose Ferrús Aparicio | Agentic Software Engineer - Disponible para trabajo remoto";
+        document.querySelector('meta[name="description"]').setAttribute("content", "Portfolio profesional de Jose Ferrús Aparicio, Agentic Software Engineer especializado en arquitecturas orientadas a servicios y uso de agentes de IA para la generación de software. Disponible para trabajo remoto en España e híbrido o presencial en Valencia.");
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Init Theme (Light by default)
+    const savedTheme = localStorage.getItem('preferredTheme') || 'light';
+    setTheme(savedTheme);
+
     // Current Year for Footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -78,7 +97,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const href = this.getAttribute('href');
+            if (!href || href === '#') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+            const target = document.querySelector(href);
             if (target) {
                 const navHeight = document.querySelector('.navbar').offsetHeight;
                 const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight;

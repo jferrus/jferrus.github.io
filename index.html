@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jose Ferrús Aparicio | Software & Integration Engineer - Disponible para trabajo remoto</title>
+    <title>Jose Ferrús Aparicio | Agentic Software Engineer - Disponible para trabajo remoto</title>
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://jferrus.es/">
@@ -12,23 +12,23 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="./favicon.svg">
     <!-- Primary Meta Tags -->
-    <meta name="title" content="Jose Ferrús Aparicio | Software & Integration Engineer - Disponible para trabajo remoto">
-    <meta name="description" content="Portfolio profesional de Jose Ferrús Aparicio, Software & Integration Engineer con experiencia en desarrollo e integración de aplicaciones y uso de agentes de IA para la generación de software. Disponible para trabajo remoto en España.">
-    <meta name="keywords" content="Jose Ferrús Aparicio, Software & Integration Engineer, Ingeniero de Software, Ingeniería de Integración, Agentes de IA, Generación de Software con IA, Integración de APIs, Desarrollo Web, Jira, Linux, Trabajo Remoto España, Portfolio, Valencia, España, remoto">
+    <meta name="title" content="Jose Ferrús Aparicio | Agentic Software Engineer - Disponible para trabajo remoto">
+    <meta name="description" content="Portfolio profesional de Jose Ferrús Aparicio, Agentic Software Engineer especializado en arquitecturas orientadas a servicios y uso de agentes de IA para la generación de software. Disponible para trabajo remoto en España e híbrido o presencial en Valencia.">
+    <meta name="keywords" content="Jose Ferrús Aparicio, Agentic Software Engineer, Ingeniero de Software, Ingeniería de Integración, Agentes de IA, Generación de Software con IA, Integración de APIs, Desarrollo Web, Jira, Linux, Trabajo Remoto España, Portfolio, Valencia, España, remoto">
     <meta name="author" content="Jose Ferrús Aparicio">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jferrus.es/">
-    <meta property="og:title" content="Jose Ferrús Aparicio | Software & Integration Engineer - Disponible para trabajo remoto">
-    <meta property="og:description" content="Portfolio profesional de Jose Ferrús Aparicio, Software & Integration Engineer con experiencia en desarrollo e integración de aplicaciones y uso de agentes de IA para la generación de software. Disponible para trabajo remoto en España.">
+    <meta property="og:title" content="Jose Ferrús Aparicio | Agentic Software Engineer - Disponible para trabajo remoto">
+    <meta property="og:description" content="Portfolio profesional de Jose Ferrús Aparicio, Agentic Software Engineer especializado en arquitecturas orientadas a servicios y uso de agentes de IA para la generación de software. Disponible para trabajo remoto en España e híbrido o presencial en Valencia.">
     <meta property="og:image" content="./profile.jpeg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://jferrus.es/">
-    <meta property="twitter:title" content="Jose Ferrús Aparicio | Software & Integration Engineer - Disponible para trabajo remoto">
-    <meta property="twitter:description" content="Portfolio profesional de Jose Ferrús Aparicio, Software & Integration Engineer con experiencia en desarrollo e integración de aplicaciones y uso de agentes de IA para la generación de software. Disponible para trabajo remoto en España.">
+    <meta property="twitter:title" content="Jose Ferrús Aparicio | Agentic Software Engineer - Disponible para trabajo remoto">
+    <meta property="twitter:description" content="Portfolio profesional de Jose Ferrús Aparicio, Agentic Software Engineer especializado en arquitecturas orientadas a servicios y uso de agentes de IA para la generación de software. Disponible para trabajo remoto en España e híbrido o presencial en Valencia.">
     <meta property="twitter:image" content="./profile.jpeg">
 
     <!-- Google Fonts -->
@@ -45,7 +45,7 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Jose Ferrús Aparicio",
-      "jobTitle": "Software & Integration Engineer",
+      "jobTitle": "Agentic Software Engineer",
       "url": "https://jferrus.es/",
       "image": "https://jferrus.es/profile.jpeg",
       "address": {
@@ -61,7 +61,7 @@
       "knowsAbout": ["Soporte Técnico IT", "Resolución de Incidencias", "Soporte a Usuarios", "Ticketing (Jira)", "Administración de Sistemas", "Linux", "Desarrollo Web Full-Stack", "Integración de APIs", "IA Agéntica", "Inteligencia Artificial", "Angular", "Node.js", "Express", "JavaScript", "TypeScript", "Python", "REST APIs", "MySQL", "PostgreSQL", "Ingeniería del Software"],
       "availableLanguage": ["Español", "Valenciano", "Inglés"],
       "jobLocationType": "TELECOMMUTE",
-      "occupationalCategory": "Software & Integration Engineer",
+      "occupationalCategory": "Agentic Software Engineer",
       "sameAs": [
         "https://github.com/jferrus",
         "https://www.linkedin.com/in/jferrus-ingeniero-de-software"
@@ -78,9 +78,9 @@
 
     <nav class="navbar">
         <div class="nav-content">
-            <a href="#" class="logo">JF.</a>
+            <a href="#hero" class="logo">JF.</a>
             <ul class="nav-links">
-                <li><a href="#about" data-i18n="nav.about">Sobre mí</a></li>
+                <li><a href="#hero" data-i18n="nav.about">Sobre mí</a></li>
                 <li><a href="#experience" data-i18n="nav.experience">Experiencia</a></li>
                 <li><a href="#education" data-i18n="nav.education">Educación</a></li>
                 <li><a href="#skills" data-i18n="nav.skills">Habilidades</a></li>
@@ -97,6 +97,22 @@
                     </svg>
                 </button>
                 <button onclick="setLanguage('en')" class="lang-btn" title="English">🇬🇧</button>
+                <button id="theme-toggle" onclick="toggleTheme()" class="lang-btn theme-btn" title="Cambiar modo claro/oscuro" aria-label="Cambiar modo claro/oscuro">
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
             </div>
         </div>
     </nav>
@@ -107,13 +123,22 @@
             <div class="hero-content">
                 <p class="greeting" data-i18n="hero.greeting">Hola, soy</p>
                 <h1 class="name">Jose Ferrús Aparicio</h1>
-                <h2 class="title"><span class="typing-text" data-i18n="hero.title">Software & Integration Engineer - Disponible en Remoto</span><span class="cursor">&nbsp;</span></h2>
+                <h2 class="title"><span class="typing-text" data-i18n="hero.title">Agentic Software Engineer - Disponible en Remoto</span><span class="cursor">&nbsp;</span></h2>
                 <p class="bio" data-i18n="hero.bio">
-                    Ingeniero de Software & Integración con experiencia en desarrollo de aplicaciones y conectividad entre sistemas.<br>
-                    Utilizo agentes de IA para la generación de software, acelerando el desarrollo desde la definición del requisito hasta la entrega.<br><br>
-                    <span class="highlight-green">Disponible para trabajo remoto en toda España.</span>
+                    Especializado en el diseño y desarrollo de <strong>arquitecturas orientadas a servicios</strong>.<br>
+                    Potencio el ciclo completo de ingeniería mediante <span class="highlight-blue">agentes de IA</span>, transformando requisitos de negocio en software robusto y escalable en tiempo récord.<br><br>
+                    <span class="highlight-green">Disponible para trabajo remoto en toda España y en modalidad híbrida o presencial en Valencia.</span>
                 </p>
                 <div class="contact-info">
+                    <a href="./CV_Jose_Ferrus_Aparicio.pdf" download="CV_Jose_Ferrus_Aparicio.pdf" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span data-i18n="hero.cv">Descargar CV</span>
+                    </a>
                     <a href="https://www.linkedin.com/in/jferrus-ingeniero-de-software" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -130,15 +155,15 @@
                         </svg>
                         GitHub
                     </a>
-                    <a href="mailto:jferrus21@proton.me" class="btn btn-primary">
+                    <div class="email-display">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="email-icon">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
                             </path>
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
-                        jferrus21 @ proton . me
-                    </a>
+                        <span class="email-text">jose <span class="email-sep">.</span> ferrus <span class="email-sep">.</span> 94 <span class="email-sep">@</span> gmail <span class="email-sep">.</span> com</span>
+                    </div>
                 </div>
             </div>
             <div class="hero-image">
@@ -153,8 +178,8 @@
                 <div class="timeline-item">
                     <div class="timeline-dot purple"></div>
                     <div class="timeline-content glass-card">
-                        <h3 data-i18n="exp5.title">Software & Integration Engineer - VRAIN</h3>
-                        <p class="duration" data-i18n="exp5.duration">2 años</p>
+                        <h3 data-i18n="exp5.title">Técnico medio - VRAIN</h3>
+                        <p class="duration" data-i18n="exp5.duration">2021 - 2023</p>
                         <p class="description" data-i18n="exp5.desc">Responsable del desarrollo y entrega exitosa de 4 proyectos de software clave...</p>
                         <p class="tech-stack"><a href="https://www.vrain.upv.es" target="_blank" rel="noopener noreferrer" style="color:var(--accent-purple); text-decoration:none;">vrain.upv.es</a></p>
                     </div>
@@ -163,26 +188,9 @@
                     <div class="timeline-dot blue"></div>
                     <div class="timeline-content glass-card">
                         <h3 data-i18n="exp2.title">Desarrollador - Viewnext</h3>
-                        <p class="duration" data-i18n="exp2.duration">2 años</p>
+                        <p class="duration" data-i18n="exp2.duration">2019 - 2021</p>
                         <p class="description" data-i18n="exp2.desc">Formé parte del equipo de desarrollo encargado de la modernización de los sistemas...</p>
                         <p class="tech-stack"><a href="https://www.viewnext.com" target="_blank" rel="noopener noreferrer" style="color:var(--accent-blue); text-decoration:none;">viewnext.com</a></p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot green"></div>
-                    <div class="timeline-content glass-card">
-                        <h3 data-i18n="exp3.title">Técnico de Soporte (Prácticas) - ICBIBE</h3>
-                        <p class="duration" data-i18n="exp3.duration">3 meses</p>
-                        <p class="description" data-i18n="exp3.desc">Prácticas curriculares del grado en un instituto de investigación de biología. Resolución de incidencias de software y hardware. <br><span
-                                class="badge">Nota: 9/10</span></p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot orange"></div>
-                    <div class="timeline-content glass-card">
-                        <h3 data-i18n="exp4.title">Técnico de Soporte (La Dipu Te Beca) - Ayto. de Navarrés</h3>
-                        <p class="duration" data-i18n="exp4.duration">1 mes</p>
-                        <p class="description" data-i18n="exp4.desc">Resolución de incidencias informáticas bajo el programa de becas 'La Dipu Te Beca' en el Ayuntamiento de Navarrés.</p>
                     </div>
                 </div>
             </div>
@@ -228,21 +236,30 @@
             <h2 class="section-title" data-i18n="section.skills">Habilidades y Formación</h2>
             <div class="grid-2">
 
-                <!-- Courses -->
+                <!-- Technical Skills -->
                 <div class="glass-card">
-                    <h3 class="card-title" data-i18n="skills.courses">Cursos Destacados</h3>
+                    <h3 class="card-title" data-i18n="skills.tech">Habilidades Técnicas</h3>
                     <ul class="courses-list">
                         <li>
                             <span class="course-icon angular"></span>
-                            <span data-i18n="course1">Curso de Angular</span>
+                            <div>
+                                <strong data-i18n="tech.web">Desarrollo Web & APIs</strong>
+                                <p style="margin:0; font-size:0.85rem; opacity:0.8;" data-i18n="tech.web.desc">Desarrollo de APIs RESTful con cualquier lenguaje de programación, cualquier biblioteca y cualquier marco de desarrollo</p>
+                            </div>
                         </li>
                         <li>
                             <span class="course-icon nodejs"></span>
-                            <span data-i18n="course2">Curso de Node.js</span>
+                            <div>
+                                <strong data-i18n="tech.db">Bases de Datos & Herramientas</strong>
+                                <p style="margin:0; font-size:0.85rem; opacity:0.8;" data-i18n="tech.db.desc">MySQL, PostgreSQL, Oracle, Git, GitHub Copilot, Jira, Linux</p>
+                            </div>
                         </li>
                         <li>
                             <span class="course-icon digital"></span>
-                            <span data-i18n="course3">Curso de Agente Digitalizador</span>
+                            <div>
+                                <strong data-i18n="tech.soft">Competencias Corporativas</strong>
+                                <p style="margin:0; font-size:0.85rem; opacity:0.8;" data-i18n="tech.soft.desc">Adaptación a nuevas herramientas, autonomía, gestión del tiempo y traducción de requisitos de negocio</p>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -279,34 +296,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Technical Skills -->
-                <div class="glass-card">
-                    <h3 class="card-title" data-i18n="skills.tech">Habilidades Técnicas</h3>
-                    <ul class="courses-list">
-                        <li>
-                            <span class="course-icon angular"></span>
-                            <div>
-                                <strong data-i18n="tech.web">Desarrollo Web & APIs</strong>
-                                <p style="margin:0; font-size:0.85rem; opacity:0.8;" data-i18n="tech.web.desc">Angular, Node.js, Express, JavaScript, TypeScript, REST APIs, HTML/CSS</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="course-icon nodejs"></span>
-                            <div>
-                                <strong data-i18n="tech.db">Bases de Datos & Herramientas</strong>
-                                <p style="margin:0; font-size:0.85rem; opacity:0.8;" data-i18n="tech.db.desc">MySQL, PostgreSQL, Oracle, Git, GitHub Copilot, Jira, Linux</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="course-icon digital"></span>
-                            <div>
-                                <strong data-i18n="tech.soft">Competencias Corporativas</strong>
-                                <p style="margin:0; font-size:0.85rem; opacity:0.8;" data-i18n="tech.soft.desc">Adaptación a nuevas herramientas, autonomía, gestión del tiempo y traducción de requisitos de negocio</p>
-                            </div>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </section>
